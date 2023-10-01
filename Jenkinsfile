@@ -1,16 +1,18 @@
 pipeline {
-    agent any
+    agent { label 'mac' } // Specify the label for Mac OS agents
 
     stages {
         stage('Check Yarn Version') {
             steps {
-                sh 'yarn --version'
+                // Use brew to check the Yarn version on Mac OS
+                sh 'brew install yarn && yarn --version'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'yarn install'
+                // Use brew to install Yarn and then install project dependencies
+                sh 'brew install yarn && yarn install'
             }
         }
     }
