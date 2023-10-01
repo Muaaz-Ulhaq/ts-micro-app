@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Check Yarn Version') {
             steps {
-                sh 'yarn --version'
+                sh 'brew install yarn && yarn --version'
             }
         }
 
