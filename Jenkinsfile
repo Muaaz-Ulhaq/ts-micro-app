@@ -1,18 +1,20 @@
 pipeline {
-    agent { label 'mac' } // Specify the label for Mac OS agents
+    agent any
+
+    environment {
+        PATH = "/usr/local/bin:$PATH" // Add Yarn installation directory to PATH
+    }
 
     stages {
         stage('Check Yarn Version') {
             steps {
-                // Use brew to check the Yarn version on Mac OS
-                sh 'brew install yarn && yarn --version'
+                sh 'yarn --version'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Use brew to install Yarn and then install project dependencies
-                sh 'brew install yarn && yarn install'
+                sh 'yarn install'
             }
         }
     }
